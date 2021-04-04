@@ -1,8 +1,11 @@
 import React from 'react';
-
+import { Route } from 'react-router-dom';
+import IndexPage from './pages/IndexPage';
 const App = () => {
   return (
-    <div>시작페이지</div>
+    <>
+      <Route component={IndexPage} path="/" exact />
+    </>
   );
 };
 
