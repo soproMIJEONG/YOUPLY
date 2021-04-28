@@ -1,5 +1,13 @@
 # 사용한 라이브러리 : 
-## react-router-dom, styled-components
+### react-router-dom 
+### styled-components
+## redux
+### redux
+### react-redux
+### redux-actions
+### redux-devtools-extension
+### redux-saga
+### axios 
 
 
 # 페이지 :
