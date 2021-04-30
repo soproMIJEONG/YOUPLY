@@ -8,6 +8,7 @@
 ### redux-devtools-extension
 ### redux-saga
 ### axios 
+### react-google-login
 
 
 # 페이지 :
