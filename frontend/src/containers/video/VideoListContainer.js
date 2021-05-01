@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import youtube from '../../lib/api/youtube.js';
 
 const VideoListContainer = () => {
-    const dispath = useDispatch();
+    // const dispath = useDispatch();
     // useSelector 
-    buttonHandler = async (termFromSearchBar) => {
-        const response = await youtube.get('/playlists', {
+    buttonHandler = async () => {
+        const response = await youtube.get('/search', {
             params: {
-                q: termFromSearchBar
+                part: "snippet",
+                q: "music",
             }
         })
         console.log("log: ", response);
