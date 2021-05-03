@@ -22,7 +22,7 @@ const GoogleLoginButton = ({ users, onChangeUser }) => {
                 key: 'user',
                 value: newUser,
             })
-        ) 
+        );
     };
 
     const responseError = response => {
