@@ -1,29 +1,47 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import GoogleLoginButton from '../../components/auth/GoogleLoginButton';
-import { changeField } from '../../modules/auth';
+import { changeField, initializeFrom, login } from '../../modules/user';
+import { check } from '../../modules/user';
 
-const GoogleLoginButtonContainer = () => {
+const GoogleLoginButtonContainer = ({ history }) => {
     const dispatch = useDispatch();
    
-    const { users } = useSelector(({ auth }) => ({
-        users: auth.user
+    const { auth, authError, user } = useSelector(({ auth, user }) => ({
+        auth: user.auth,
+        authError: user.authError,
+        user: user.user
     }));
-   
-    const onChangeUser = value => {
+    
+    const onChange = (value) => {
         dispatch(
             changeField({
                 key: 'user',
                 value: value,
             })
-        )
+        );
     }
+    /*
+    const onSubmit = () => {
+        const { username, userId, token} = user;
+        dispatch(login({ username, userId, token }));
+    }
+    */
+    useEffect(() => {
+        dispatch(initializeForm('login'))
+    }, [dispatch]);
     
     useEffect(() => {
-        dispatch(initializeForm('user'))
-    }, [dispatch]);
+        if (user) {
+            try {
+                localStorage.setItem('user', JSON.stringify(form));
+            } catch (e) {
+                console.log('localstorage not working');
+            }
+        }
+    }, [history, user]);
 
-    return <GoogleLoginButton users={users} useronChangeUser={onChangeUser} /> 
+    return <GoogleLoginButton onChange={onChange} onSubmit={onSubmit} /> 
 }
 
 export default GoogleLoginButtonContainer;

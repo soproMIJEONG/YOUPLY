@@ -2,19 +2,21 @@ import React from 'react';
 import youtube from '../../lib/api/youtube';
 
 
-const LoadPlaylistButton = () => {
-    
+const LoadPlaylistButton = ({ token }) => {
+
     const loadPlaylists = async () => {
-        const response = await youtube.get('/search', {
+        const response = await youtube.get(`/playlists`, {
             params: {
-                q: "music"
+                mine: true,
+                access_token: token,
+                token_type: "Bearer",
             }
         })
-        console.log("log: ", response);
+        console.log("playlist api resources: ", response);
     }
     
     return (
-        <button onClick={loadPlaylists}>BUTTON</button>
+        <button onClick={loadPlaylists}>LoadPlaylist</button>
     );
 };
 export default LoadPlaylistButton;

@@ -36,6 +36,7 @@ const initialState = {
     title: '',
     body: '',
     tags: [],
+    playlist: '',
     post: null,
     postError: null,
     originalPostId: null,

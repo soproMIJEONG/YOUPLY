@@ -8,6 +8,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga'; // 768p
 import { HelmetProvider } from 'react-helmet-async';  // meta태그 설정
 import rootReducer, { rootSaga } from './modules/index.js';
+import { tempSetUser, } from './modules/user';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -15,7 +16,20 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
+function loadUser() {
+  try {
+    const user = localStorage.getItem('user');
+    if (!user) return;
+
+    store.dispatch(tempSetUser(user));
+    // store.dispatch(check());
+  } catch (e){
+    console.log('localstorage not working');
+  }
+}
+
 sagaMiddleware.run(rootSaga);
+loadUser();
 
 ReactDOM.render(
   <Provider store={store}>
