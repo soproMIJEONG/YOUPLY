@@ -1,11 +1,13 @@
 package kr.co.youply.domain.posts;
 
 import kr.co.youply.domain.BaseTimeEntity;
+import kr.co.youply.domain.user.User;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by WOOSERK.
@@ -20,9 +22,33 @@ import javax.persistence.Id;
 public class Posts extends BaseTimeEntity
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String content;
-    private String author;
 
+    @Column(length = 500, nullable = false)
+    private String title;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User author;
+
+    @ColumnDefault("0")
+    private int count;
+
+    @Builder
+    public Posts(String title, String content, User author)
+    {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
+
+    public void update(String title, String content)
+    {
+        this.title = title;
+        this.content = content;
+    }
 }
