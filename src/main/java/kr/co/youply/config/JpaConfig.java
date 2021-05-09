@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 
 @Configuration
-@EnableJpaAuditing
+@EnableJpaAuditing // Jpa의 Auditing기능 활성화(시간에 대해서 자동으로 값을 넣어주는 기능)
 public class JpaConfig
 {
 }
