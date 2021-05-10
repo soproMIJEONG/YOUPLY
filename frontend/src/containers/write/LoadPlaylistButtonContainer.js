@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LoadPlaylistButton from '../../components/write/LoadPlaylistButton.js';
+import { changeField } from '../../modules/write';
 
 const LoadPlaylistButtonContainer = () => {
-    const dispath = useDispatch();
-    const { token } = useSelector(({ user }) => ({   // title값과 body값을 리덕스 스토어에서 불러옴
+    const dispatch = useDispatch();
+    const { token } = useSelector(({ user }) => ({   
         token: user.user.token
     }));
 
-    return <LoadPlaylistButton token={token} />
+    const onChangeField = useCallback(payload => dispatch(changeField(payload)),  
+    [dispatch]);
+    return <LoadPlaylistButton token={token} onChangeField={onChangeField} />
 }
 
 export default LoadPlaylistButtonContainer;
