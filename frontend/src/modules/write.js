@@ -19,7 +19,7 @@ const UPDATE_POST_FAILURE = 'write/UPDATE_POST_FAILURE';
 
 export const initialize = createAction(INITIALIZE);
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({ key, value }));    
-export const writePost = createAction(WRITE_POST, ({ title, body, tags, playlistId, username }) => ({ title, body, tags, playlistId, username }));
+export const writePost = createAction(WRITE_POST, ({ title, body, tags, selectedPL, username }) => ({ title, body, tags, selectedPL, username }));
 export const setOriginalPost = createAction(SET_ORIGINAL_POST, post => post);
 export const updatePost = createAction(UPDATE_POST, ({ id, title, body, tags, selectedPL, username }) => ({ id, title, body, tags, selectedPL, username }));
 

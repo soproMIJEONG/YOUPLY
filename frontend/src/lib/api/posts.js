@@ -2,8 +2,8 @@ import client from './client';
 import qs from 'qs';
 
 // 포스트 쓰기
-export const writePost = ({ title, body, tags, playlistId, username }) =>
-    client.post('/api/posts', { title, body, tags, playlistId, username });
+export const writePost = ({ title, body, tags, selectedPL, username }) =>
+    client.post('/api/posts', { title, body, tags, selectedPL, username });
 
 // 포스트 읽기
 export const readPost = id => client.get(`/api/posts/${id}`);
