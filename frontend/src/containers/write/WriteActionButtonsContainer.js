@@ -6,21 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const WriteActionButtonsContainer = ({ history }) => {
     const dispatch = useDispatch();
-    const { title, body, tags, post, postError, originalPostId } = useSelector(({ write }) => ({    // 리덕스 스토어 (인터넷 개발자탭의 redux탭에 있는 state 들.)
+    const { title, body, tags, post, postError, originalPostId } = useSelector(({ write, user }) => ({    // 리덕스 스토어 (인터넷 개발자탭의 redux탭에 있는 state 들.)
         title: write.title,
         body: write.body,
         tags: write.tags,
         post: write.post,
+        selectedPL: write.selectedPL,
+        username: user.username,
         postError: write.postError,
         originalPostId: write.originalPostId,
     }));
 
     const onPublish = () => {
         if (originalPostId) {
-            dispatch(updatePost({ title, body, tags, id: originalPostId }));
+            dispatch(updatePost({ id, title, body, tags, playlistId, username }));
             return;
         }
-        dispatch(writePost({ title, body, tags }));
+        dispatch(writePost({ title, body, tags, selectedPL, username }));
     };
 
     const onCancel = () => {
