@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import WritePlList from '../../components/write/WritePlList';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeField } from '../../modules/write';
@@ -9,15 +9,10 @@ const WritePlListContainer = () => {
         playlists: write.playlists
     }));
 
-    const handlePlSelect = (value) => {
-        dispatch(
-            changeField({
-                key: 'selectedPL',
-                value: value
-            })
-        )
-    }
+    const onChangeField = useCallback(payload => dispatch(changeField(payload)),   
+        [dispatch]
+    );
 
-    return <WritePlList playlists={playlists} handlePLSelect={handlePlSelect}/>
+    return <WritePlList playlists={playlists} onChangeField={onChangeField} />
 }
 export default WritePlListContainer;
