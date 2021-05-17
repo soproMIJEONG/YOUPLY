@@ -12,7 +12,7 @@ const WriteActionButtonsContainer = ({ history }) => {
         tags: write.tags,
         post: write.post,
         selectedPL: write.selectedPL,
-        username: user.username,
+        username: user.user.username,
         postError: write.postError,
         originalPostId: write.originalPostId,
     }));
