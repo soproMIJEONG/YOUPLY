@@ -1,8 +1,9 @@
 import React from 'react';
+import PostViewerContainer from '../containers/post/PostViewerContainer';
 
 const PostPage = () => {
     return (
-        <div>게시글조회페이지</div>
+        <PostViewerContainer />
     );
 };
 

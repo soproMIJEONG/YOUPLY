@@ -15,7 +15,7 @@ const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
-
+/*
 function loadUser() {
   try {
     const user = localStorage.getItem('user');
@@ -27,9 +27,9 @@ function loadUser() {
     console.log('localstorage not working');
   }
 }
-
+*/
 sagaMiddleware.run(rootSaga);
-loadUser();
+// loadUser();
 
 ReactDOM.render(
   <Provider store={store}>
