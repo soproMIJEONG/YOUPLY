@@ -14,7 +14,6 @@
 
 # 페이지 :
 ## / : 홈화면
-## /post : 게시글 조회
+## /post/postId : 게시글 조회
 ## /postslist : 게시글 목록
-## /ranking : 랭킹
 ## /write : 게시글 작성
