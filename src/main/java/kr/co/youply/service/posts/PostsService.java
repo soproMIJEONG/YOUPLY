@@ -36,7 +36,7 @@ public class PostsService
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
-        posts.update(requestDTO.getTitle(), requestDTO.getContent());
+        posts.update(requestDTO.getTitle(), requestDTO.getBody(), requestDTO.getSelectedPL(), requestDTO.getTags());
 
         return id;
     }

@@ -1,13 +1,13 @@
 package kr.co.youply.domain.posts;
 
 import kr.co.youply.domain.BaseTimeEntity;
-import kr.co.youply.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 /**
  * Created by WOOSERK.
@@ -25,30 +25,40 @@ public class Posts extends BaseTimeEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 500, nullable = false)
+    @Column(length = 100, nullable = false)
     private String title;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
+    private String body;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User author;
+    @Column()
+    private String username;
 
     @ColumnDefault("0")
     private int count;
 
+    private String selectedPL;
+
+    private ArrayList<String> tags;
+
+    private String thumbnail;
+
     @Builder
-    public Posts(String title, String content, User author)
+    public Posts(String title, String body, String username, String selectedPL, ArrayList<String> tags, String thumbnail)
     {
         this.title = title;
-        this.content = content;
-        this.author = author;
+        this.body = body;
+        this.username = username;
+        this.selectedPL = selectedPL;
+        this.tags = tags;
+        this.thumbnail = thumbnail;
     }
 
-    public void update(String title, String content)
+    public void update(String title, String body, String selectedPL, ArrayList<String> tags)
     {
         this.title = title;
-        this.content = content;
+        this.body = body;
+        this.selectedPL= selectedPL;
+        this.tags = tags;
     }
 }

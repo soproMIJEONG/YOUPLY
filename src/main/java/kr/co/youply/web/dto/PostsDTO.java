@@ -1,11 +1,11 @@
 package kr.co.youply.web.dto;
 
 import kr.co.youply.domain.posts.Posts;
-import kr.co.youply.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  * Created by WOOSERK.
@@ -21,23 +21,26 @@ public class PostsDTO
     public static class PostsSaveRequestDTO
     {
         private String title;
-        private String content;
-        private User author;
+        private String body;
+        private String username;
+        private String selectedPL;
 
         @Builder
-        public PostsSaveRequestDTO(String title, String content, User author)
+        public PostsSaveRequestDTO(String title, String body, String username, String selectedPL)
         {
             this.title = title;
-            this.content = content;
-            this.author = author;
+            this.body = body;
+            this.username = username;
+            this.selectedPL = selectedPL;
         }
 
         public Posts toEntity()
         {
             return Posts.builder()
                     .title(title)
-                    .content(content)
-                    .author(author)
+                    .body(body)
+                    .username(username)
+                    .selectedPL(selectedPL)
                     .build();
         }
     }
@@ -47,13 +50,17 @@ public class PostsDTO
     public static class PostsUpdateRequestDTO
     {
         private String title;
-        private String content;
+        private String body;
+        private String selectedPL;
+        private ArrayList<String> tags;
 
         @Builder
-        public PostsUpdateRequestDTO(String title, String content)
+        public PostsUpdateRequestDTO(String title, String body, String selectedPL, ArrayList<String> tags)
         {
             this.title = title;
-            this.content = content;
+            this.body = body;
+            this.selectedPL = selectedPL;
+            this.tags = tags;
         }
     }
 
@@ -63,17 +70,23 @@ public class PostsDTO
     {
         private Long id;
         private String title;
-        private String content;
-        private User author;
+        private String body;
+        private String username;
         private int count;
+        private String selectedPL;
+        private LocalDateTime createdTime;
+        private LocalDateTime modifiedTime;
 
         public PostsResponseDTO(Posts entity)
         {
             this.id = entity.getId();
             this.title = entity.getTitle();
-            this.content = entity.getContent();
-            this.author = entity.getAuthor();
+            this.body = entity.getBody();
+            this.username = entity.getUsername();
             this.count = entity.getCount();
+            this.selectedPL = entity.getSelectedPL();
+            this.createdTime = entity.getCreatedDate();
+            this.modifiedTime = entity.getModifiedDate();
         }
     }
 
@@ -83,17 +96,21 @@ public class PostsDTO
     {
         private Long id;
         private String title;
-        private User author;
+        private String username;
         private int count;
-        private LocalDateTime modifiedDate;
+        private String thumbnail;
+        private ArrayList<String> tags;
+        private LocalDateTime createdDate;
 
         public PostsListResponseDTO(Posts entity)
         {
             this.id = entity.getId();
             this.title = entity.getTitle();
-            this.author = entity.getAuthor();
+            this.username = entity.getUsername();
             this.count = entity.getCount();
-            this.modifiedDate = entity.getModifiedDate();
+            this.thumbnail = entity.getThumbnail();
+            this.tags = tags;
+            this.createdDate = entity.getCreatedDate();
         }
     }
 }
