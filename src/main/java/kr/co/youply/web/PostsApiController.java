@@ -1,12 +1,9 @@
 package kr.co.youply.web;
 
-import kr.co.youply.domain.posts.Posts;
 import kr.co.youply.service.posts.PostsService;
 import kr.co.youply.web.dto.PostsDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by WOOSERK.
@@ -25,5 +22,11 @@ public class PostsApiController
     public Long save(@RequestBody PostsDTO.PostsSaveRequestDTO requestDTO)
     {
         return postsService.save(requestDTO);
+    }
+
+    @GetMapping("/api/posts/{id}")
+    public PostsDTO.PostsResponseDTO findById(@PathVariable Long id)
+    {
+        return postsService.findById(id);
     }
 }

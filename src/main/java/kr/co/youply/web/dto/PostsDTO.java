@@ -24,14 +24,18 @@ public class PostsDTO
         private String body;
         private String username;
         private String selectedPL;
+        private ArrayList<String> tags;
+        private String thumbnail;
 
         @Builder
-        public PostsSaveRequestDTO(String title, String body, String username, String selectedPL)
+        public PostsSaveRequestDTO(String title, String body, String username, String selectedPL, ArrayList<String> tags, String thumbnail)
         {
             this.title = title;
             this.body = body;
             this.username = username;
             this.selectedPL = selectedPL;
+            this.tags = tags;
+            this.thumbnail = thumbnail;
         }
 
         public Posts toEntity()
@@ -41,6 +45,8 @@ public class PostsDTO
                     .body(body)
                     .username(username)
                     .selectedPL(selectedPL)
+                    .tags(tags)
+                    .thumbnail(thumbnail)
                     .build();
         }
     }
@@ -53,14 +59,16 @@ public class PostsDTO
         private String body;
         private String selectedPL;
         private ArrayList<String> tags;
+        private String thumbnail;
 
         @Builder
-        public PostsUpdateRequestDTO(String title, String body, String selectedPL, ArrayList<String> tags)
+        public PostsUpdateRequestDTO(String title, String body, String selectedPL, ArrayList<String> tags, String thumbnail)
         {
             this.title = title;
             this.body = body;
             this.selectedPL = selectedPL;
             this.tags = tags;
+            this.thumbnail = thumbnail;
         }
     }
 
@@ -74,6 +82,7 @@ public class PostsDTO
         private String username;
         private int count;
         private String selectedPL;
+        private String thumbnail;
         private LocalDateTime createdTime;
         private LocalDateTime modifiedTime;
 
@@ -85,6 +94,7 @@ public class PostsDTO
             this.username = entity.getUsername();
             this.count = entity.getCount();
             this.selectedPL = entity.getSelectedPL();
+            this.thumbnail = entity.getThumbnail();
             this.createdTime = entity.getCreatedDate();
             this.modifiedTime = entity.getModifiedDate();
         }
