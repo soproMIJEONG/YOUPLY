@@ -15,8 +15,8 @@ const App = () => {
         <title>YOUPLY</title>
       </Helmet>
       <Route component={IndexPage} path="/" exact />
-      <Route component={PostPage} path="/@:username/:postId" />   
-      <Route component={PostsListPage} path={['/@:searchKeyword', '/postsList']} exact /> {/* /@:username */}
+      <Route component={PostPage} path="/@:username/:playlistid" />   
+      <Route component={PostsListPage} path={['/@:searchKeyword', '/postslist']} exact /> {/* /@:username */}
       <Route component={RankingPage} path="/ranking" />     {/* /@:tag */}
       <Route component={WritePage} path="/write" />
     </>

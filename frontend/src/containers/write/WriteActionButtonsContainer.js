@@ -21,26 +21,22 @@ const WriteActionButtonsContainer = ({ history }) => {
     const onPublish = () => {
         if (originalPostId) {
             dispatch(updatePost({ id: originalPostId, title, body, tags, selectedPL, username, thumbnail }));
+            history.push(`/@:${username}/${selectedPL}`);
             return;
         }
         dispatch(writePost({ title, body, tags, selectedPL, username, thumbnail }));
+        history.push(`/@:${username}/${selectedPL}`);
     };
 
     const onCancel = () => {
         history.goBack();
     };
-
+    /*
     useEffect(() => {
-        if (post) {
-            const { _id, user } = post; // 서버에서 응답한 포스트 정보의 _id와 username값 참조 (jwtMiddleWare)
-            history.push(`/@${user.username}/${_id}`);
-        }
-        if (postError) {
-            console.log(postError);
-        }
-    }, [history, post, postError]);
-    
-    return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={originalPostId}/>;
+            //history.push(`/${selectedPL}`);
+    }, [history]);
+    */
+    return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={originalPostId} />;
 };
 
 export default withRouter(WriteActionButtonsContainer);
