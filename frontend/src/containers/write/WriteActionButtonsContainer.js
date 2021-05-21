@@ -21,21 +21,26 @@ const WriteActionButtonsContainer = ({ history }) => {
     const onPublish = () => {
         if (originalPostId) {
             dispatch(updatePost({ id: originalPostId, title, body, tags, selectedPL, username, thumbnail }));
-            history.push(`/@:${username}/${selectedPL}`);
+            // history.push(`/@:${username}/${selectedPL}`);
             return;
         }
         dispatch(writePost({ title, body, tags, selectedPL, username, thumbnail }));
-        history.push(`/@:${username}/${selectedPL}`);
+        // history.push(`/@:${username}/${selectedPL}`);
     };
 
     const onCancel = () => {
         history.goBack();
     };
-    /*
+    
     useEffect(() => {
-            //history.push(`/${selectedPL}`);
-    }, [history]);
-    */
+        if (post) {
+            history.push(`/${post}`);
+        }
+        if (postError) {
+            console.log(postError);
+        }
+    }, [history, post, postError]);
+    
     return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={originalPostId} />;
 };
 

@@ -17,6 +17,7 @@ const PostViewerContainer = ({ match, history }) => {
 
     useEffect(() => {
         dispatch(readPost(postId));
+        console.log(postId);
         // remove post data when unmount
         return () => {
             dispatch(unloadPost());
