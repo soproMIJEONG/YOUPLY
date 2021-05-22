@@ -26,21 +26,21 @@ const PostViewer = ({ post, error, loading }) => {
 
     return (
         <>
-            <Helmet>
-                <title>{post.title} - YOUPLY</title>
-            </Helmet>
-            <h1>{post.title}</h1>
             {!loading && post && 
-            <iframe 
-                width="854" 
-                height="480" 
-                src={`http://www.youtube.com/embed/videoseries?list=${post.selectedPL}`}
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen>
-            </iframe>
+                <h1>{post.title}</h1>}
+            {!loading && post && 
+                <iframe 
+                    width="854" 
+                    height="480" 
+                    src={`http://www.youtube.com/embed/videoseries?list=${post.selectedPL}`}
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen>
+                </iframe>
             }
-            <d>{post.body}</d>
+            {!loading && post &&
+                <d>{post.body}</d>
+            }
         </>
     )
 }
