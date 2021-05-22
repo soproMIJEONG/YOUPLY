@@ -9,6 +9,7 @@ const LoadPlaylistButton = ({ token, onChangeField }) => {
     const loadPlaylists = async () => {
         const response = await youtube.get(`/playlists`, {
             params: {
+                part: 'snippet,contentDetails,player',
                 mine: true,
                 access_token: token,
                 token_type: "Bearer",

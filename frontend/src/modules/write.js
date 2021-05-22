@@ -19,9 +19,9 @@ const UPDATE_POST_FAILURE = 'write/UPDATE_POST_FAILURE';
 
 export const initialize = createAction(INITIALIZE);
 export const changeField = createAction(CHANGE_FIELD, ({ key, value }) => ({ key, value }));    
-export const writePost = createAction(WRITE_POST, ({ title, body, tags, selectedPL, username, thumbnail }) => ({ title, body, tags, selectedPL, username, thumbnail }));
+export const writePost = createAction(WRITE_POST, ({ title, body, tags, selectedPL, username, thumbnail, userId }) => ({ title, body, tags, selectedPL, username, thumbnail, userId }));
 export const setOriginalPost = createAction(SET_ORIGINAL_POST, post => post);
-export const updatePost = createAction(UPDATE_POST, ({ id, title, body, tags, selectedPL, username, thumbnail }) => ({ id, title, body, tags, selectedPL, username, thumbnail }));
+export const updatePost = createAction(UPDATE_POST, ({ id, title, body, tags, selectedPL, username, thumbnail, userId }) => ({ id, title, body, tags, selectedPL, username, thumbnail, userId }));
 
 // 사가 생성
 const writePostSaga = createRequestSaga(WRITE_POST, postsAPI.writePost);

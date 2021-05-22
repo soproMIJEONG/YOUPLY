@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const WriteActionButtonsContainer = ({ history }) => {
     const dispatch = useDispatch();
-    const { title, body, tags, post, selectedPL, username, thumbnail, postError, originalPostId } = useSelector(({ write, user }) => ({    
+    const { title, body, tags, post, selectedPL, username, userId, thumbnail, postError, originalPostId } = useSelector(({ write, user }) => ({    
         title: write.title,
         body: write.body,
         tags: write.tags,
         post: write.post,
         selectedPL: write.selectedPL,
         username: user.user.username,
+        userId: user.user.userId,
         thumbnail: write.thumbnail,
         postError: write.postError,
         originalPostId: write.originalPostId,
@@ -20,12 +21,10 @@ const WriteActionButtonsContainer = ({ history }) => {
 
     const onPublish = () => {
         if (originalPostId) {
-            dispatch(updatePost({ id: originalPostId, title, body, tags, selectedPL, username, thumbnail }));
-            // history.push(`/@:${username}/${selectedPL}`);
+            dispatch(updatePost({ id: originalPostId, title, body, tags, selectedPL, username, thumbnail, userId }));
             return;
         }
-        dispatch(writePost({ title, body, tags, selectedPL, username, thumbnail }));
-        // history.push(`/@:${username}/${selectedPL}`);
+        dispatch(writePost({ title, body, tags, selectedPL, username, thumbnail, userId }));
     };
 
     const onCancel = () => {
