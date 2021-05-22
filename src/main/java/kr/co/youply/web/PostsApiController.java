@@ -5,6 +5,8 @@ import kr.co.youply.web.dto.PostsDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by WOOSERK.
  * User: WOOSERK
@@ -28,5 +30,25 @@ public class PostsApiController
     public PostsDTO.PostsResponseDTO findById(@PathVariable Long id)
     {
         return postsService.findById(id);
+    }
+
+    @PatchMapping("/api/posts/{id}")
+    public Long update(@PathVariable Long id, @RequestBody PostsDTO.PostsUpdateRequestDTO requestDTO)
+    {
+        return postsService.update(id, requestDTO);
+    }
+
+    @DeleteMapping("/api/posts/{id}")
+    public Long delete(@PathVariable Long id)
+    {
+        postsService.delete(id);
+
+        return id;
+    }
+
+    @GetMapping("/api/posts")
+    public List<PostsDTO.PostsListResponseDTO> findAllDesc()
+    {
+        return postsService.findAllDesc();
     }
 }

@@ -16,6 +16,11 @@ import java.util.ArrayList;
 
 public class PostsDTO
 {
+    public static String removeTag(String body)
+    {
+        return body.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+    }
+
     // DB에 Posts insert 요청을 하기 위한 DTO
     @Getter
     public static class PostsSaveRequestDTO
@@ -31,7 +36,7 @@ public class PostsDTO
         public PostsSaveRequestDTO(String title, String body, String username, String selectedPL, ArrayList<String> tags, String thumbnail)
         {
             this.title = title;
-            this.body = body;
+            this.body = removeTag(body);
             this.username = username;
             this.selectedPL = selectedPL;
             this.tags = tags;
@@ -65,7 +70,7 @@ public class PostsDTO
         public PostsUpdateRequestDTO(String title, String body, String selectedPL, ArrayList<String> tags, String thumbnail)
         {
             this.title = title;
-            this.body = body;
+            this.body = removeTag(body);
             this.selectedPL = selectedPL;
             this.tags = tags;
             this.thumbnail = thumbnail;

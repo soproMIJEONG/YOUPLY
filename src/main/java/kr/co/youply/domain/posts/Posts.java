@@ -31,7 +31,7 @@ public class Posts extends BaseTimeEntity
     @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
 
-    @Column()
+    @Column
     private String username;
 
     @ColumnDefault("0")
@@ -42,6 +42,9 @@ public class Posts extends BaseTimeEntity
     private ArrayList<String> tags;
 
     private String thumbnail;
+
+    @ColumnDefault("false")
+    private boolean deleteFlag;
 
     @Builder
     public Posts(String title, String body, String username, String selectedPL, ArrayList<String> tags, String thumbnail)

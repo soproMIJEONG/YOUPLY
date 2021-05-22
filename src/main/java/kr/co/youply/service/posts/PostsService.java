@@ -34,7 +34,7 @@ public class PostsService
     public Long update(Long id, PostsDTO.PostsUpdateRequestDTO requestDTO)
     {
         Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         posts.update(requestDTO.getTitle(), requestDTO.getBody(), requestDTO.getSelectedPL(), requestDTO.getTags());
 
@@ -44,7 +44,7 @@ public class PostsService
     public PostsDTO.PostsResponseDTO findById(Long id)
     {
         Posts entity = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         return new PostsDTO.PostsResponseDTO(entity);
     }
@@ -61,7 +61,7 @@ public class PostsService
     public void delete(Long id)
     {
         Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         postsRepository.delete(posts);
     }
