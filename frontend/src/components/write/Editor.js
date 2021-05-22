@@ -76,12 +76,13 @@ const Editor = ({ onChangeField, title, body }) => {
         <EditorBlock>
             <TitleInput 
                 placeholder="제목을 입력하세요"
-                onChange={onChangeTitle}    // 변화가 생기면 (타이핑되면) onChangeTitle 핸들러  실행
-                value={title}    // 제목 쓰는 input에  {title} 할당
+                onChange={onChangeTitle}    
+                value={title}    
             />
             <QuillWraper>
                 <div ref={quillElement} />  {/* 내용 부분. Quill 적용*/}
             </QuillWraper>
+            
         </EditorBlock>
     )
 }

@@ -1,6 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import youtube from '../../lib/api/youtube';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import styled from 'styled-components'
+import PlayItemListContainer from '../../containers/post/PlayItemListContainer';
+
+
+const PageBlock = styled.div`
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: #1a1a1f;
+    color: #ccc9c9;
+`;
+
+const HeaderBlock = styled.div`
+    display: flex;
+`;
+const BodyWrapper = styled.div`
+    display: flex;
+    justify-content: space-around;
+`;
+
+const PostBlock =  styled.div`
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+`;
+
+const ListBlock = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
 
 const PostViewer = ({ post, error, loading }) => {
 
@@ -10,38 +39,32 @@ const PostViewer = ({ post, error, loading }) => {
         }
         return <h1>오류 발생</h1>
     }
-   
-    const loadVideos = async () => {
-        const response = await youtube.get(`/playlistItems`, {
-            params: {
-                part: 'id',
-                playlistId: post.selectedPL
-            }
-        })
-        console.log(response);
-    }
-
-    // 페이지 접근 시 youtube api 호출
-    {!loading && post && loadVideos()}
-
+    
     return (
-        <>
-            {!loading && post && 
-                <h1>{post.title}</h1>}
-            {!loading && post && 
-                <iframe 
-                    width="854" 
-                    height="480" 
-                    src={`http://www.youtube.com/embed/videoseries?list=${post.selectedPL}`}
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen>
-                </iframe>
-            }
-            {!loading && post &&
-                <d>{post.body}</d>
-            }
-        </>
+        !loading && post && 
+        <PageBlock>
+            <HeaderBlock>
+                <h1>Header</h1>
+            </HeaderBlock>
+            <BodyWrapper>
+                <PostBlock>
+                        <iframe 
+                            width="800" 
+                            height="450" 
+                            src={`http://www.youtube.com/embed/videoseries?list=${post.selectedPL}`}
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen>
+                        </iframe>
+                        <h1>{post.title}</h1>
+                        <p1>{post.username} {post.modifiedTime}</p1>
+                        <h4>{post.body}</h4>
+                </PostBlock>
+                <ListBlock>
+                    <PlayItemListContainer />
+                </ListBlock>
+            </BodyWrapper>
+        </PageBlock>
     )
 }
 

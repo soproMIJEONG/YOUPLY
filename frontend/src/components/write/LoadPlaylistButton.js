@@ -15,15 +15,7 @@ const LoadPlaylistButton = ({ token, onChangeField }) => {
                 token_type: "Bearer",
             }
         })
-        /*
-        const response2 = await youtube.get('/playlistItems', {
-            params: {
-                mine: true,
-                access_token: token,
-                token_type: "Bearer"
-            }
-        })
-        */
+        
         console.log("playlist api resources: ", response);
         // console.log("playlistItem api resources: ", response2);
         
