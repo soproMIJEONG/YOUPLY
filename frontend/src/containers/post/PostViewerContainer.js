@@ -15,6 +15,7 @@ const PostViewerContainer = ({ match, history }) => {
         loading: loading['post/READ_POST']
     }));
 
+
     useEffect(() => {
         dispatch(readPost(postId));
         console.log(postId);
