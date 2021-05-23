@@ -5,14 +5,15 @@ import { changeField } from '../../modules/write';
 
 const WritePlListContainer = () => {
     const dispatch = useDispatch();
-    const { playlists } = useSelector(({ write }) => ({   
-        playlists: write.playlists
+    const { playlists, thumbnail } = useSelector(({ write }) => ({   
+        playlists: write.playlists,
+        thumbnail: write.thumbnail
     }));
 
     const onChangeField = useCallback(payload => dispatch(changeField(payload)),   
         [dispatch]
     );
 
-    return <WritePlList playlists={playlists} onChangeField={onChangeField} />
+    return <WritePlList playlists={playlists} thumbnail={thumbnail} onChangeField={onChangeField} />
 }
 export default WritePlListContainer;

@@ -4,7 +4,7 @@ import EditorContainer from '../containers/write/EditorContainer';
 import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer';
 import LoadPlaylistButtonContainer from '../containers/write/LoadPlaylistButtonContainer';
 import WritePlListContainer from '../containers/write/WritePlListContainer';
-import TagBox from '../components/write/TagBox';
+import TagBoxContainer from '../containers/write/TagBoxContainer';
 import { Helmet } from 'react-helmet-async';
 
 const WritePage = () => {
@@ -14,7 +14,7 @@ const WritePage = () => {
                 <title>글쓰기 - YOUPLY</title>
             </Helmet>
             <EditorContainer />
-            <TagBox />
+            <TagBoxContainer />
             <LoadPlaylistButtonContainer />
             <WritePlListContainer />
             <WriteActionButtonsContainer />
