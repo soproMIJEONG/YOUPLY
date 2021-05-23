@@ -1,6 +1,8 @@
 package kr.co.youply.domain.posts;
 
 import kr.co.youply.domain.BaseTimeEntity;
+import kr.co.youply.domain.PostsTag.PostsTag;
+import kr.co.youply.domain.tag.Tag;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by WOOSERK.
@@ -31,7 +34,8 @@ public class Posts extends BaseTimeEntity
     @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
 
-    @Column
+    private String userId;
+
     private String username;
 
     @ColumnDefault("0")
@@ -39,29 +43,27 @@ public class Posts extends BaseTimeEntity
 
     private String selectedPL;
 
-    private ArrayList<String> tags;
-
     private String thumbnail;
 
     @ColumnDefault("false")
     private boolean deleteFlag;
 
     @Builder
-    public Posts(String title, String body, String username, String selectedPL, ArrayList<String> tags, String thumbnail)
+    public Posts(String title, String body, String userId, String username, String selectedPL, String thumbnail)
     {
         this.title = title;
         this.body = body;
+        this.userId = userId;
         this.username = username;
         this.selectedPL = selectedPL;
-        this.tags = tags;
         this.thumbnail = thumbnail;
     }
 
-    public void update(String title, String body, String selectedPL, ArrayList<String> tags)
+    public void update(String title, String body, String selectedPL, String thumbnail)
     {
         this.title = title;
         this.body = body;
         this.selectedPL= selectedPL;
-        this.tags = tags;
+        this.thumbnail = thumbnail;
     }
 }

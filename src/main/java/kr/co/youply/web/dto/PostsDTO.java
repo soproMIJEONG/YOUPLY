@@ -1,11 +1,12 @@
 package kr.co.youply.web.dto;
 
+import kr.co.youply.domain.PostsTag.PostsTag;
 import kr.co.youply.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by WOOSERK.
@@ -27,19 +28,19 @@ public class PostsDTO
     {
         private String title;
         private String body;
+        private String userId;
         private String username;
         private String selectedPL;
-        private ArrayList<String> tags;
         private String thumbnail;
 
         @Builder
-        public PostsSaveRequestDTO(String title, String body, String username, String selectedPL, ArrayList<String> tags, String thumbnail)
+        public PostsSaveRequestDTO(String title, String body, String userId, String username, String selectedPL, String thumbnail)
         {
             this.title = title;
             this.body = removeTag(body);
+            this.userId = userId;
             this.username = username;
             this.selectedPL = selectedPL;
-            this.tags = tags;
             this.thumbnail = thumbnail;
         }
 
@@ -48,9 +49,9 @@ public class PostsDTO
             return Posts.builder()
                     .title(title)
                     .body(body)
+                    .userId(userId)
                     .username(username)
                     .selectedPL(selectedPL)
-                    .tags(tags)
                     .thumbnail(thumbnail)
                     .build();
         }
@@ -63,16 +64,14 @@ public class PostsDTO
         private String title;
         private String body;
         private String selectedPL;
-        private ArrayList<String> tags;
         private String thumbnail;
 
         @Builder
-        public PostsUpdateRequestDTO(String title, String body, String selectedPL, ArrayList<String> tags, String thumbnail)
+        public PostsUpdateRequestDTO(String title, String body, String selectedPL, String thumbnail)
         {
             this.title = title;
             this.body = removeTag(body);
             this.selectedPL = selectedPL;
-            this.tags = tags;
             this.thumbnail = thumbnail;
         }
     }
@@ -84,6 +83,7 @@ public class PostsDTO
         private Long id;
         private String title;
         private String body;
+        private String userId;
         private String username;
         private int count;
         private String selectedPL;
@@ -96,6 +96,7 @@ public class PostsDTO
             this.id = entity.getId();
             this.title = entity.getTitle();
             this.body = entity.getBody();
+            this.userId = entity.getUserId();
             this.username = entity.getUsername();
             this.count = entity.getCount();
             this.selectedPL = entity.getSelectedPL();
@@ -114,7 +115,6 @@ public class PostsDTO
         private String username;
         private int count;
         private String thumbnail;
-        private ArrayList<String> tags;
         private LocalDateTime createdDate;
 
         public PostsListResponseDTO(Posts entity)
@@ -124,7 +124,6 @@ public class PostsDTO
             this.username = entity.getUsername();
             this.count = entity.getCount();
             this.thumbnail = entity.getThumbnail();
-            this.tags = tags;
             this.createdDate = entity.getCreatedDate();
         }
     }

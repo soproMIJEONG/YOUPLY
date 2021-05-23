@@ -2,6 +2,7 @@ package kr.co.youply.service.posts;
 
 import kr.co.youply.domain.posts.Posts;
 import kr.co.youply.domain.posts.PostsRepository;
+import kr.co.youply.domain.tag.TagRepository;
 import kr.co.youply.web.dto.PostsDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 public class PostsService
 {
     private final PostsRepository postsRepository;
+    private final TagRepository tagRepository;
 
     @Transactional
     public Long save(PostsDTO.PostsSaveRequestDTO requestDto)
@@ -36,7 +38,7 @@ public class PostsService
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
-        posts.update(requestDTO.getTitle(), requestDTO.getBody(), requestDTO.getSelectedPL(), requestDTO.getTags());
+        posts.update(requestDTO.getTitle(), requestDTO.getBody(), requestDTO.getSelectedPL(), requestDTO.getThumbnail());
 
         return id;
     }

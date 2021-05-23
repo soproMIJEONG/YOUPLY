@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Time: 오후 11:00
  */
 
-public interface TagRepository
+public interface TagRepository extends JpaRepository<Tag, String>
 {
 }
