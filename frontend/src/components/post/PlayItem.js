@@ -11,7 +11,7 @@ const PlayItem = ({ title, thumbnail }) => {
     return(
         <ItemBlock>
             <img className='ui image' src={thumbnail} />
-            <div className='ui title'>{title}</div>
+            {/*<div className='ui title'>{title}</div>*/}
         </ItemBlock>
     )
 }

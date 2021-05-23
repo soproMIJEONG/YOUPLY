@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components'
 import PlayItemListContainer from '../../containers/post/PlayItemListContainer';
-
+import { Link } from 'react-router-dom';
 
 const PageBlock = styled.div`
     display: flex;
@@ -14,7 +14,19 @@ const PageBlock = styled.div`
 
 const HeaderBlock = styled.div`
     display: flex;
+    height: 7rem;
+    align-items: flex-start;
+    justify-content: space-evenly; /* 자식 엘리먼트 사이의 여백을 최대로 설정 */
+    .logo {
+        font-size: 2.5rem;
+        font-weight: 1000;
+        letter-spacing: 1.75px;
+        text-decoration: none;
+        color: #c4302b;
+    }
 `;
+
+
 const BodyWrapper = styled.div`
     display: flex;
     justify-content: space-around;
@@ -24,11 +36,17 @@ const PostBlock =  styled.div`
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    .subdesc {
+        align-self: flex-end;
+    }
 `;
 
 const ListBlock = styled.div`
     display: flex;
     flex-direction: column;
+    .list-text {
+        align-self: center;
+    }
 `;
 
 const PostViewer = ({ post, error, loading }) => {
@@ -44,7 +62,7 @@ const PostViewer = ({ post, error, loading }) => {
         !loading && post && 
         <PageBlock>
             <HeaderBlock>
-                <h1>Header</h1>
+                <Link to="/" className="logo">YOUPLY</Link>
             </HeaderBlock>
             <BodyWrapper>
                 <PostBlock>
@@ -57,10 +75,12 @@ const PostViewer = ({ post, error, loading }) => {
                             allowFullScreen>
                         </iframe>
                         <h1>{post.title}</h1>
-                        <p1>{post.username} {post.modifiedTime}</p1>
+                        <p1 className="subdesc">{post.username} {post.modifiedTime}</p1>
+                        
                         <h4>{post.body}</h4>
                 </PostBlock>
                 <ListBlock>
+                    <h2 className="list-text">재생목록</h2>
                     <PlayItemListContainer />
                 </ListBlock>
             </BodyWrapper>

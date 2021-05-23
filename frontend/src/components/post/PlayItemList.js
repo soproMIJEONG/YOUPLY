@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import youtube from '../../lib/api/youtube';
 import PlayItem from './PlayItem';
+import styled from 'styled-components';
+
+const ItemListBlock = styled.div`
+    overflow: auto;
+    height: 600px;
+    &::-webkit-scrollbar {
+        width: 8px;
+        background-color: #1a1a1f;
+    
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #b4b4b4ea;
+    }
+`;
 
 const PlayItemList = ({ post }) => {
     const [items, setItems] = useState([]);
@@ -23,13 +37,16 @@ const PlayItemList = ({ post }) => {
     const renderedItems = items.map((item) => {
         return (
             <PlayItem 
+                key={item.id}
                 title={item.snippet.title} 
-                thumbnail={item.snippet.thumbnails.medium.url}  
+                thumbnail={item.snippet.thumbnails.medium.url} 
             />
         )
     });
 
-    return <div>{renderedItems}</div>;
+    return (
+        <ItemListBlock>{renderedItems}</ItemListBlock>
+    );
 }
 
 export default PlayItemList;
