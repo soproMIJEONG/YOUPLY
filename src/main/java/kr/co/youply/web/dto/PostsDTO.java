@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,15 +33,17 @@ public class PostsDTO
         private String userId;
         private String username;
         private String selectedPL;
+        private List<String> tags;
         private String thumbnail;
 
         @Builder
-        public PostsSaveRequestDTO(String title, String body, String userId, String username, String selectedPL, String thumbnail)
+        public PostsSaveRequestDTO(String title, String body, String userId, String username, String[] tags, String selectedPL, String thumbnail)
         {
             this.title = title;
             this.body = removeTag(body);
             this.userId = userId;
             this.username = username;
+            this.tags = new ArrayList(Arrays.asList(tags));
             this.selectedPL = selectedPL;
             this.thumbnail = thumbnail;
         }
@@ -88,10 +92,11 @@ public class PostsDTO
         private int count;
         private String selectedPL;
         private String thumbnail;
+        private List<PostsTagDTO.PostsTagListResponseDTO> tags;
         private LocalDateTime createdTime;
         private LocalDateTime modifiedTime;
 
-        public PostsResponseDTO(Posts entity)
+        public PostsResponseDTO(Posts entity, List<PostsTagDTO.PostsTagListResponseDTO> tags)
         {
             this.id = entity.getId();
             this.title = entity.getTitle();
@@ -101,6 +106,7 @@ public class PostsDTO
             this.count = entity.getCount();
             this.selectedPL = entity.getSelectedPL();
             this.thumbnail = entity.getThumbnail();
+            this.tags = tags;
             this.createdTime = entity.getCreatedDate();
             this.modifiedTime = entity.getModifiedDate();
         }

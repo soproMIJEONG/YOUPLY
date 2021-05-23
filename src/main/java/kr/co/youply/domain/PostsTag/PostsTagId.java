@@ -16,6 +16,6 @@ import java.io.Serializable;
 @Getter
 public class PostsTagId implements Serializable
 {
-    private long posts;
+    private Long posts;
     private String tag;
 }

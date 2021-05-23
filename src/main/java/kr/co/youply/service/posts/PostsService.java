@@ -1,9 +1,13 @@
 package kr.co.youply.service.posts;
 
+import kr.co.youply.domain.PostsTag.PostsTag;
+import kr.co.youply.domain.PostsTag.PostsTagRepository;
 import kr.co.youply.domain.posts.Posts;
 import kr.co.youply.domain.posts.PostsRepository;
+import kr.co.youply.domain.tag.Tag;
 import kr.co.youply.domain.tag.TagRepository;
 import kr.co.youply.web.dto.PostsDTO;
+import kr.co.youply.web.dto.PostsTagDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +28,23 @@ public class PostsService
 {
     private final PostsRepository postsRepository;
     private final TagRepository tagRepository;
+    private final PostsTagRepository postsTagRepository;
 
     @Transactional
     public Long save(PostsDTO.PostsSaveRequestDTO requestDto)
     {
-        return postsRepository.save(requestDto.toEntity())
-                .getId();
+        // 게시글을 insert한다.
+        Posts posts =  postsRepository.save(requestDto.toEntity());
+        Long postsId = posts.getId();
+
+        // 태그와 중간 테이블을 insert한다.
+        for(String name : requestDto.getTags())
+        {
+            Tag tag = tagRepository.save(new Tag(name));
+            postsTagRepository.save(new PostsTag(posts, tag));
+        }
+
+        return postsId;
     }
 
     @Transactional
@@ -48,7 +63,9 @@ public class PostsService
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
-        return new PostsDTO.PostsResponseDTO(entity);
+        List<PostsTagDTO.PostsTagListResponseDTO> tags = postsTagRepository.findByPosts(entity.getId()).stream().map(PostsTagDTO.PostsTagListResponseDTO::new).collect(Collectors.toList());
+
+        return new PostsDTO.PostsResponseDTO(entity, tags);
     }
 
     @Transactional(readOnly = true)
