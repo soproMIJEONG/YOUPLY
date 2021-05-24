@@ -93,7 +93,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
                         <h1>{title}</h1>
                         <TagBlock>
                             {tags.map((tag) => {
-                                return(<p1 className="tag-item">#{tag.tag}</p1>);  
+                                return(<p1 className="tag-item">#{tag}</p1>);  
                             })}
                         </TagBlock>
                         <p1 className="subdesc">{username} {modifiedTime}</p1>
