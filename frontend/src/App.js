@@ -16,7 +16,7 @@ const App = () => {
       </Helmet>
       <Route component={IndexPage} path="/" exact />
       <Route component={PostPage} path="/post/:postId" />   
-      <Route component={PostsListPage} path={['/@:searchKeyword', '/postslist']} exact /> {/* /@:username */}
+      <Route component={PostsListPage} path={['/postslist/:searchType/:searchKeyword', '/postslist']} exact /> {/* /@:username */}
       <Route component={RankingPage} path="/ranking" />     {/* /@:tag */}
       <Route component={WritePage} path="/write" />
     </>
