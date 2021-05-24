@@ -70,7 +70,7 @@ const write = handleActions(
             title: post.title,
             body: post.body,
             tags: post.tags,
-            originalPostId: post._id,
+            originalPostId: post.id,
         }),
         [UPDATE_POST_SUCCESS]: (state, { payload: post }) => ({
             ...state,

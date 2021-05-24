@@ -41,6 +41,15 @@ const PostBlock =  styled.div`
     }
 `;
 
+const TagBlock = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .tag-item {
+        margin-right: 0.5rem;
+    }
+`;
+
 const ListBlock = styled.div`
     display: flex;
     flex-direction: column;
@@ -49,7 +58,7 @@ const ListBlock = styled.div`
     }
 `;
 
-const PostViewer = ({ post, error, loading }) => {
+const PostViewer = ({ post, error, loading, actionButtons }) => {
 
     if (error) {
         if (error.response && error.response.status === 404) {
@@ -57,9 +66,16 @@ const PostViewer = ({ post, error, loading }) => {
         }
         return <h1>오류 발생</h1>
     }
-    
+
+    // props 받아오는거 기달
+    if (loading || !post) {
+        return null;
+    }
+
+    // post 정보들
+    const { title, body, tags, modifiedTime, username } = post;
+
     return (
-        !loading && post && 
         <PageBlock>
             <HeaderBlock>
                 <Link to="/" className="logo">YOUPLY</Link>
@@ -74,10 +90,15 @@ const PostViewer = ({ post, error, loading }) => {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen>
                         </iframe>
-                        <h1>{post.title}</h1>
-                        <p1 className="subdesc">{post.username} {post.modifiedTime}</p1>
-                        
-                        <h4>{post.body}</h4>
+                        <h1>{title}</h1>
+                        <TagBlock>
+                            {tags.map((tag) => {
+                                return(<p1 className="tag-item">#{tag.tag}</p1>);  
+                            })}
+                        </TagBlock>
+                        <p1 className="subdesc">{username} {modifiedTime}</p1>
+                        {actionButtons}
+                        <h4>{body}</h4>
                 </PostBlock>
                 <ListBlock>
                     <h2 className="list-text">재생목록</h2>
