@@ -92,11 +92,12 @@ public class PostsDTO
         private int count;
         private String selectedPL;
         private String thumbnail;
-        private List<PostsTagDTO.PostsTagListResponseDTO> tags;
+        // private List<PostsTagDTO.PostsTagListResponseDTO> tags;
+        private List<String> tags;
         private LocalDateTime createdTime;
         private LocalDateTime modifiedTime;
 
-        public PostsResponseDTO(Posts entity, List<PostsTagDTO.PostsTagListResponseDTO> tags)
+        public PostsResponseDTO(Posts entity, List<String> tags)
         {
             this.id = entity.getId();
             this.title = entity.getTitle();

@@ -63,7 +63,8 @@ public class PostsService
         Posts entity = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
-        List<PostsTagDTO.PostsTagListResponseDTO> tags = postsTagRepository.findByPosts(entity.getId()).stream().map(PostsTagDTO.PostsTagListResponseDTO::new).collect(Collectors.toList());
+        // List<PostsTagDTO.PostsTagListResponseDTO> tags = postsTagRepository.findByPosts(entity.getId()).stream().map(PostsTagDTO.PostsTagListResponseDTO::new).collect(Collectors.toList());
+        List<String> tags = postsTagRepository.findByPosts(entity.getId()).stream().map(tag -> tag.getTag().getName()).collect(Collectors.toList());
 
         return new PostsDTO.PostsResponseDTO(entity, tags);
     }

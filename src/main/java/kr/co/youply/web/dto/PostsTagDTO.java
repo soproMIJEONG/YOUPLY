@@ -1,8 +1,6 @@
 package kr.co.youply.web.dto;
 
 import kr.co.youply.domain.PostsTag.PostsTag;
-import kr.co.youply.domain.posts.Posts;
-import kr.co.youply.domain.tag.Tag;
 import lombok.Getter;
 
 /**

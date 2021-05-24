@@ -1,13 +1,10 @@
 package kr.co.youply.domain.tag;
 
-import kr.co.youply.domain.PostsTag.PostsTag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.List;
 
 /**
  * Created by WOOSERK.
