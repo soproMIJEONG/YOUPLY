@@ -13,7 +13,8 @@ const buttonStyle = css`
     outline: none;
     cursor: pointer;
     background: ${palette.gray[8]};
-    
+    text-decoration-line: none;
+
     &:hover {
         background: ${palette.gray[6]};
     }
@@ -33,11 +34,11 @@ const buttonStyle = css`
         `
     }
     ${props =>
-        props.cyan &&
+        props.red &&
         css`
-            background: ${palette.cyan[5]};
+            background: ${palette.red[5]};
             &:hover {
-                background: ${palette.cyan[4]};
+                background: ${palette.red[4]};
             }
         `
     }
@@ -58,7 +59,7 @@ const StyledLink = styled(Link)`
 `;
 
 const Button = props => { 
-    return props.to ? ( <StyledLink {...props} cyan={props.cyan ? 1 : 0} /> ) 
+    return props.to ? ( <StyledLink {...props} red={props.red ? 1 : 0} /> ) 
     : (<StyledButton gray={props.gray ? 1 : 0} {...props} /> );
 };
 

@@ -3,8 +3,8 @@ import createRequestSaga from '../lib/createRequestSaga';
 import * as postsAPI from '../lib/api/posts';
 import { takeLatest } from 'redux-saga/effects';
 
-const INITIALIZE = 'write/INITIALIZE';      // 모든 내용 초기화
-const CHANGE_FIELD = 'write/CHANGE_FIELD'   // 특정 key값 바꾸기
+const INITIALIZE = 'write/INITIALIZE';    
+const CHANGE_FIELD = 'write/CHANGE_FIELD'   
 
 // 포스트 쓰기 관련
 const WRITE_POST = 'write/WRITE_POST';
@@ -12,7 +12,7 @@ const WRITE_POST_SUCCESS = 'write/WRITE_POST_SUCCESS';
 const WRITE_POST_FAILURE = 'write/WRITE_POST_FAILURE';
 
 // 포스트 수정 관련
-const SET_ORIGINAL_POST = 'write/SET_ORIGINAL_POST';    // 현재 보고있는 포스트 정보를 write 모듈에서 관리하는 상태에 넣음
+const SET_ORIGINAL_POST = 'write/SET_ORIGINAL_POST';    
 const UPDATE_POST = 'write/UPDATE_POST';
 const UPDATE_POST_SUCCESS = 'write/UPDATE_POST_SUCCESS';
 const UPDATE_POST_FAILURE = 'write/UPDATE_POST_FAILURE';

@@ -50,7 +50,7 @@ const AskModal = ({ visible, title, description, confirmText= '확인', cancleTe
                 <p>{description}</p>
                 <div className="buttons">
                     <StyledButton onClick={onCancle}>{cancleText}</StyledButton>
-                    <StyledButton cyan onClick={onConfirm}>{confirmText}</StyledButton>
+                    <StyledButton red onClick={onConfirm}>{confirmText}</StyledButton>
                 </div>
             </AskModalBlock>
         </Fullscreen>

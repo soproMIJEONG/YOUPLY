@@ -17,9 +17,12 @@ const PostListContainer = ({ match, location }) => {
     // URL 에서 쿼리, 파라미터 값 가져와서 api 로
     useEffect(() => {
         const { searchType } = match.params;
+        console.log(searchType);
         const { searchKeyword, page } = qs.parse(location.search, {
             ignoreQueryPrefix: true,
         });
+        console.log(searchKeyword);
+        console.log(page);
         dispatch(listPosts({ page, searchKeyword, searchType }));
     }, [dispatch, location.search]);
 

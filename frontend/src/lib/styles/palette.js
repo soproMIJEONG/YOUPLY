@@ -11,7 +11,7 @@ const palette = {
       '#343a40',
       '#212529',
     ],
-    cyan: [
+    red: [
       '#fce7e3',
       '#fac7c5',
       '#f29f99',

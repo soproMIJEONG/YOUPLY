@@ -18,11 +18,11 @@ const ButtonBlock = styled.button`
         padding-right: 1rem;
         padding-left: 1rem;
         border: none;
-        background: ${palette.cyan[8]};
+        background: ${palette.red[8]};
         color: white;
         font-weight: bold;
         &:hover {
-            background: ${palette.cyan[6]};
+            background: ${palette.red[6]};
         }
 `;
 

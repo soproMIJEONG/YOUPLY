@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 import Responsive from '../common/Responsive';
-import SubInfo from '../common/SubInfo';
-import Tags from '../common/Tags';
+// import SubInfo from '../common/SubInfo';
+// import Tags from '../common/Tags';
 import { Link } from 'react-router-dom';
 
 const PostListBlock = styled(Responsive)`
@@ -43,14 +43,12 @@ const PostItemBlock = styled.div`
 `;
 
 const PostItem = ({ post }) => {
-    const { publishdDate, title, user, body, tags, _id } = post;
+    const { modifiedDate, title, body, tags, id, username, thumbnail } = post;
     return (
         <PostItemBlock>
             <h2>
-                <Link to={`/@${user.username}/${_id}`}>{title}</Link>
+                <Link to={`/post/${id}`}>{title}</Link>
             </h2>
-            <SubInfo username={user.username} publishdDate={new Date(publishdDate)} /> 
-            <Tags tags={tags} />
             <p>{body}</p>
         </PostItemBlock>
     );
@@ -65,7 +63,7 @@ const PostList = ({ posts, loading, error, showWrittenButton }) => {
         <PostListBlock>
             <WritePostButtonWrapper>
                 {showWrittenButton && (
-                    <Button cyan to="/write">
+                    <Button red to="/write">
                         새 글 작성하기
                     </Button>
                 )}
@@ -74,7 +72,7 @@ const PostList = ({ posts, loading, error, showWrittenButton }) => {
             {!loading && posts && (
                 <div>
                     {posts.map(post => (
-                        <PostItem post={post} key={post._id} />
+                        <PostItem post={post} key={post.id} />
                     ))}
                 </div>
             )}
