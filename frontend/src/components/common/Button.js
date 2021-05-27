@@ -36,7 +36,7 @@ const buttonStyle = css`
     ${props =>
         props.red &&
         css`
-            background: ${palette.red[5]};
+            background: ${palette.red[6]};
             &:hover {
                 background: ${palette.red[4]};
             }

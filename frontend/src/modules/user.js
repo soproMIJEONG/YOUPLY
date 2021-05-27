@@ -65,14 +65,8 @@ export function* userSaga() {
 }
 
 const initialState = {
-    user: {
-        username: '',
-        userId: '',
-        token: '',
-    },
+    user: null,
     checkError: null,
-    auth: null,
-    authError: null,
 };
 
 const user = handleActions(

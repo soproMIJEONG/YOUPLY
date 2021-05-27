@@ -11,6 +11,7 @@
 ### react-google-login
 ### react-helmet-async
 ### immer
+### react-icons
 
 # 페이지 :
 ## / : 홈화면

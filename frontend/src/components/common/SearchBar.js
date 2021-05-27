@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import Button from '../common/Button';
+import Button from './Button';
 import palette from '../../lib/styles/palette';
+import { HiSearch } from 'react-icons/hi';
 
 const SearchForm = styled.form`
     display: flex;
@@ -21,15 +22,13 @@ const SearchForm = styled.form`
         border-bottom: 2px solid ${palette.gray[5]};
         outline: none;
         width: 50%;
-        &:focus {
-            color: $oc-teal-7;
-            border-bottom: 1px solid ${palette.gray[7]};
-        }
+
         & + & {
             margin-top: 1rem;
         }
     }
     .form-btn {
+        width: 1rem;
         margin: 4px;
         padding: 13px;
     }
@@ -59,7 +58,7 @@ const SearchBar = () => {
                 value={input}
                 onChange={onChangeInput}
             />
-            <Button className="form-btn" red to={`/posts/${select}?searchKeyword=${input}&page=1`}>검색</Button>
+            <Button className="form-btn" red to={`/posts/${select}?searchKeyword=${input}&page=1`}><HiSearch /></Button>
         </SearchForm>
     )
 }

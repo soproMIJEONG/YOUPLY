@@ -16,13 +16,14 @@ const HeaderBlock = styled.div`
     display: flex;
     height: 7rem;
     align-items: flex-start;
-    justify-content: space-evenly; /* 자식 엘리먼트 사이의 여백을 최대로 설정 */
+    justify-content: space-evenly; 
     .logo {
         font-size: 2.5rem;
         font-weight: 1000;
         letter-spacing: 1.75px;
         text-decoration: none;
         color: #c4302b;
+        margin-top: 15px;
     }
 `;
 
