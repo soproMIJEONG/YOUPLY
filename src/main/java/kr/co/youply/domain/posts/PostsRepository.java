@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by WOOSERK.
@@ -16,6 +17,11 @@ import java.util.List;
 
 public interface PostsRepository extends JpaRepository<Posts, Long>
 {
+    Optional<Posts> findByIdAndDeleteFlagFalse(Long id);
+
+    @Query("SELECT p FROM Posts p WHERE p.deleteFlag = FALSE")
+    Page<Posts> findAllAndDeleteFlagFalse(Pageable pageable);
+
     // 제목으로 검색
     Page<Posts> findAllByTitleContainingAndDeleteFlagFalse(String title, Pageable pageable);
 

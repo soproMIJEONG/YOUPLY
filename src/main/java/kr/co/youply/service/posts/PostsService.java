@@ -7,6 +7,7 @@ import kr.co.youply.domain.posts.PostsRepository;
 import kr.co.youply.domain.tag.Tag;
 import kr.co.youply.domain.tag.TagRepository;
 import kr.co.youply.web.dto.PostsDTO;
+import kr.co.youply.web.dto.PostsTagDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,7 +52,7 @@ public class PostsService
     @Transactional
     public Long update(Long id, PostsDTO.PostsUpdateRequestDTO requestDTO)
     {
-        Posts posts = postsRepository.findById(id)
+        Posts posts = postsRepository.findByIdAndDeleteFlagFalse(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         posts.update(requestDTO.getTitle(), requestDTO.getBody(), requestDTO.getSelectedPL(), requestDTO.getThumbnail());
@@ -62,7 +63,7 @@ public class PostsService
     @Transactional(readOnly = true)
     public PostsDTO.PostsResponseDTO findById(Long id)
     {
-        Posts entity = postsRepository.findById(id)
+        Posts entity = postsRepository.findByIdAndDeleteFlagFalse(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         // List<PostsTagDTO.PostsTagListResponseDTO> tags = postsTagRepository.findByPosts(entity.getId()).stream().map(PostsTagDTO.PostsTagListResponseDTO::new).collect(Collectors.toList());
@@ -91,7 +92,7 @@ public class PostsService
         }
         else
         {
-            pages = postsRepository.findAll(pageable);
+            pages = postsRepository.findAllAndDeleteFlagFalse(pageable);
             postsListResponseDTO = pages.stream()
                     .map(PostsDTO.PostsListResponseDTO::new).collect(Collectors.toList());
         }
@@ -105,7 +106,7 @@ public class PostsService
     @Transactional
     public void softDelete(Long id)
     {
-        Posts posts = postsRepository.findById(id)
+        Posts posts = postsRepository.findByIdAndDeleteFlagFalse(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         posts.softDelete();
