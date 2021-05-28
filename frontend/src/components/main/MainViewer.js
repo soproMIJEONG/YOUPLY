@@ -11,6 +11,7 @@ const MainBlock = styled.div`
     align-items: center;    
     .logo {
         margin-bottom: 0px;
+        margin-top: 1rem;
         font-size: 6rem;
         font-weight: 1000;
         letter-spacing: 2.75px;

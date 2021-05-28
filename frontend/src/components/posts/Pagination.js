@@ -13,8 +13,8 @@ const PaginationBlock = styled.div`
 const PageNumber = styled.div``;
 
 const buildLink = ({ searchType, searchKeyword, page }) => {
-    const query = qs.stringify({ searchKeyword, page });
-    return `/posts/${searchType}?${query}`;
+    const query = qs.stringify({ searchType, searchKeyword, page });
+    return `/posts?${query}`;
 };
 
 const Pagination = ({ searchType, searchKeyword, page, lastPage }) => { // 현재선택된계정명, 태그, 현재페이지, 마지막페이지

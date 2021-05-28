@@ -7,7 +7,7 @@ import { HiSearch } from 'react-icons/hi';
 const SearchForm = styled.form`
     display: flex;
     justify-content: center;
-    margin-top: 22px;
+    margin-top: 7rem;
     width: 70rem;
     .form-select {
         padding: 12px;
@@ -58,7 +58,7 @@ const SearchBar = () => {
                 value={input}
                 onChange={onChangeInput}
             />
-            <Button className="form-btn" red to={`/posts/${select}?searchKeyword=${input}&page=1`}><HiSearch /></Button>
+            <Button className="form-btn" red to={`/posts?searchType=${select}&searchKeyword=${input}&page=1`}><HiSearch /></Button>
         </SearchForm>
     )
 }
