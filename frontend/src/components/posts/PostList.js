@@ -104,18 +104,17 @@ const PostItem = ({ post }) => {
             <h3>
                 <Link className='item-title' to={`/post/${id}`}>{title}</Link>
             </h3>
-            
             <p1 className="subdesc">{username} {createdDate}</p1>
         </PostItemBlock>
     );
 };
 
-const PostList = ({ posts, loading, error, showWrittenButton }) => {
+const PostList = ({ posts, loading, error, user }) => {
     if (error ) {
         return <PostListBlock>에러 발생</PostListBlock>;
     }
 
-    if (loading || !posts) {
+    if (loading || !posts.posts) {
         return null;
     }
 
@@ -124,9 +123,9 @@ const PostList = ({ posts, loading, error, showWrittenButton }) => {
         <HeaderBlock>
             <Link to="/" className="logo">YOUPLY</Link>
             <SearchBar />
-            {showWrittenButton ? 
+            {user ? 
                 (<div className="logged">
-                {showWrittenButton.username}님 안녕하세요.
+                    {user.username}님 안녕하세요.
                 </div>) 
                 : 
                 (<div className="login">
@@ -136,9 +135,9 @@ const PostList = ({ posts, loading, error, showWrittenButton }) => {
         </HeaderBlock>
         <PostListBlock>
             {/* 로딩중 아니고, 포스트배열이 존재할 때 */}
-            {!loading && posts && (
+            {!loading && posts.posts && (
                 <div>
-                    {posts.map(post => (
+                    {posts.posts.map(post => (
                         <PostItem post={post} key={post.id} />
                     ))}
                 </div>

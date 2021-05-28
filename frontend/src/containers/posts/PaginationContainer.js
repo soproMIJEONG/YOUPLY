@@ -12,7 +12,7 @@ const PaginationContainer = ({ match, location }) => {
     }));
 
     // 포스트 데이터없거나 로딩중이면 아무것도 안보여줌
-    if (!posts || loading ) return null;
+    if (!posts.post || loading ) return null;
 
     // const { searchType } = match.params;  
     const { searchType, searchKeyword, page = 1 } = qs.parse(location.search, {   // ?searchKeyword= , ?page=

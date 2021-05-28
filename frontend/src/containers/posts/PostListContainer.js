@@ -27,7 +27,7 @@ const PostListContainer = ({ match, location }) => {
     }, [dispatch, location.search]);
 
     return (
-        <PostList loading={loading} posts={posts} error={error} showWrittenButton={user} />
+        <PostList loading={loading} posts={posts} error={error} user={user} />
     );
 };
 

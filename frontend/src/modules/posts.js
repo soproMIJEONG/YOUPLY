@@ -16,7 +16,10 @@ export function* postsSaga() {
 }
 
 const initialState = {
-    posts: null,
+    posts: {
+        posts: null,
+        lastPage: 1
+    },
     error: null,
     lastPage: 1,
 };
