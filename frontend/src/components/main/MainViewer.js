@@ -10,7 +10,7 @@ const MainBlock = styled.div`
     flex-direction: column;
     align-items: center;    
     .logo {
-        margin-bottom: 0px;
+        margin-bottom: 7rem;
         margin-top: 1rem;
         font-size: 6rem;
         font-weight: 1000;
@@ -18,11 +18,7 @@ const MainBlock = styled.div`
         text-decoration: none;
         color: #c4302b;
     }
-    .subtitle {
-        font-weight: 600;
-        color: #c4302b;
-        margin-bottom: 30px;
-    }
+    
     .login {
         align-self: flex-end;
         margin-top: 15px;
@@ -60,7 +56,6 @@ const MainViewer = ({ user }) => {
                 </div>)
             }
             <h1 className="logo">YOUPLY</h1>
-            <p1 className="subtitle"></p1>
             <SearchBar />
             <ButtonBlock>
                 <Button red to="/posts">모든 재생목록 보기</Button>

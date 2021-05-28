@@ -16,17 +16,18 @@ export function* postsSaga() {
 }
 
 const initialState = {
-    posts: null,
+    posts: {
+        posts: null,
+        lastPage: 1
+    },
     error: null,
-    lastPage: 1,
 };
 
 const posts = handleActions(
     {
-        [LIST_POSTS_SUCCESS]: (state, { payload: posts, meta: response }) => ({
+        [LIST_POSTS_SUCCESS]: (state, { payload: posts }) => ({
             ...state,
             posts,
-            lastPage: parseInt(response.headers['last-page'], 6),   // 문자열을 숫자로
         }),
         [LIST_POSTS_FAILURE]: (state, { payload: error }) => ({
             ...state,

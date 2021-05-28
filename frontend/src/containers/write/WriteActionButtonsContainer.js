@@ -40,7 +40,7 @@ const WriteActionButtonsContainer = ({ history }) => {
         }
     }, [history, post, postError]);
     
-    return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={originalPostId} />;
+    return <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={originalPostId} thumbnail={thumbnail} />;
 };
 
 export default withRouter(WriteActionButtonsContainer);
