@@ -3,6 +3,8 @@ package kr.co.youply.web;
 import kr.co.youply.service.posts.PostsService;
 import kr.co.youply.web.dto.PostsDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,8 +49,10 @@ public class PostsApiController
     }
 
     @GetMapping("/api/posts")
-    public List<PostsDTO.PostsListResponseDTO> findAllDesc()
+    public PostsDTO.PostsListResponsePageDTO findListDesc(@RequestParam(required = false, defaultValue = "1") int page,
+                                                            @RequestParam(required = false, defaultValue = "", value = "searchKeyword") String keyword,
+                                                            @RequestParam(required = false, defaultValue = "", value = "searchType") String type)
     {
-        return postsService.findAllDesc();
+        return postsService.findListDesc(PageRequest.of(page-1, 6, Sort.Direction.DESC, "id"), keyword, type);
     }
 }

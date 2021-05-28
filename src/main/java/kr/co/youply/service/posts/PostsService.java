@@ -7,8 +7,9 @@ import kr.co.youply.domain.posts.PostsRepository;
 import kr.co.youply.domain.tag.Tag;
 import kr.co.youply.domain.tag.TagRepository;
 import kr.co.youply.web.dto.PostsDTO;
-import kr.co.youply.web.dto.PostsTagDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +59,7 @@ public class PostsService
         return id;
     }
 
+    @Transactional(readOnly = true)
     public PostsDTO.PostsResponseDTO findById(Long id)
     {
         Posts entity = postsRepository.findById(id)
@@ -70,11 +72,34 @@ public class PostsService
     }
 
     @Transactional(readOnly = true)
-    public List<PostsDTO.PostsListResponseDTO> findAllDesc()
+    public PostsDTO.PostsListResponsePageDTO findListDesc(Pageable pageable, String keyword, String type)
     {
-        return postsRepository.findAllDesc().stream()
-                .map(PostsDTO.PostsListResponseDTO::new)
-                .collect(Collectors.toList());
+        Page<Posts> pages = null;
+        List<PostsDTO.PostsListResponseDTO> postsListResponseDTO = null;
+
+        if(type.equals("tag"))
+        {
+            pages = postsRepository.findAllByTagAndDeleteFlagFalse(keyword, pageable);
+            postsListResponseDTO = pages.getContent().stream()
+                    .map(PostsDTO.PostsListResponseDTO::new).collect(Collectors.toList());
+        }
+        else if(type.equals("title"))
+        {
+            pages = postsRepository.findAllByTitleContainingAndDeleteFlagFalse(keyword, pageable);
+            postsListResponseDTO = pages.stream()
+                    .map(PostsDTO.PostsListResponseDTO::new).collect(Collectors.toList());
+        }
+        else
+        {
+            pages = postsRepository.findAll(pageable);
+            postsListResponseDTO = pages.stream()
+                    .map(PostsDTO.PostsListResponseDTO::new).collect(Collectors.toList());
+        }
+
+        for(PostsDTO.PostsListResponseDTO dto : postsListResponseDTO)
+            dto.setTags(postsTagRepository.findByPosts(dto.getId()).stream().map(tag -> tag.getTag().getName()).collect(Collectors.toList()));
+
+        return new PostsDTO.PostsListResponsePageDTO(postsListResponseDTO, pages.getTotalPages());
     }
 
     @Transactional

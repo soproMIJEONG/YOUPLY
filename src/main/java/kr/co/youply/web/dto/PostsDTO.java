@@ -1,14 +1,15 @@
 package kr.co.youply.web.dto;
 
-import kr.co.youply.domain.PostsTag.PostsTag;
 import kr.co.youply.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by WOOSERK.
@@ -115,6 +116,7 @@ public class PostsDTO
 
     // 목록에서 보여줄 내용을 담고 있는 DTO
     @Getter
+    @Setter
     public static class PostsListResponseDTO
     {
         private Long id;
@@ -122,6 +124,8 @@ public class PostsDTO
         private String username;
         private int count;
         private String thumbnail;
+        private List<String> tags;
+        private int lastPage;
         private LocalDateTime createdDate;
 
         public PostsListResponseDTO(Posts entity)
@@ -132,6 +136,19 @@ public class PostsDTO
             this.count = entity.getCount();
             this.thumbnail = entity.getThumbnail();
             this.createdDate = entity.getCreatedDate();
+        }
+    }
+
+    @Getter
+    public static class PostsListResponsePageDTO
+    {
+        List<PostsListResponseDTO> posts;
+        int lastPage;
+
+        public PostsListResponsePageDTO(List<PostsListResponseDTO> posts, int lastPage)
+        {
+            this.posts = posts;
+            this.lastPage = lastPage;
         }
     }
 }
