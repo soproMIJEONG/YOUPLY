@@ -66,4 +66,10 @@ public class Posts extends BaseTimeEntity
         this.selectedPL= selectedPL;
         this.thumbnail = thumbnail;
     }
+
+    // DB에 남기는 삭제
+    public void softDelete()
+    {
+        this.deleteFlag = true;
+    }
 }
