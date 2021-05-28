@@ -9,6 +9,13 @@ import GoogleLoginButton from '../auth/GoogleLoginButton';
 // import Tags from '../common/Tags';
 import { Link } from 'react-router-dom';
 
+const ComponenetWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
 const HeaderBlock = styled.div`
     display: flx;
     align-items: baseline;
@@ -37,31 +44,29 @@ const HeaderBlock = styled.div`
 `;
 
 const PostListBlock = styled(Responsive)`
-    margin-top: 3rem;
-`;
-
-const WritePostButtonWrapper = styled.div`
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 3rem;
+    width: 90%;
+    flex-direction: row;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    flex: 1 1 30%;
 `;
 
 const PostItemBlock = styled.div`
-    background-color: #c6fddb;
-    display: flex;
-    width: 352px;
+    display: inline-flex;
     flex-direction: column;
+    background-color: #fcf5f5;
+    width: 352px;
+    height: auto;
+    margin: 1.5rem;
+    margin-left: 4.0rem;
+    margin-right: 4.0rem;
     padding-top: 0;
-    padding-bottom: 3rem;
+    padding-bottom: 0.5rem;
+    border: 7px solid;
+    border-image: linear-gradient(to right, #ff7777bc, #cdffd4aa, #65d3ffaa);
+    border-image-slice: 1;
     
-    /* 맨위 포스트는 padding-top 없음 */
-    &:first-child {
-        padding-top: 0;
-    }
-    & + & {
-        border-top: 1px solid ${palette.gray[2]};
-    }
-
     p {
         margin-top: 2rem;
     }
@@ -70,6 +75,10 @@ const PostItemBlock = styled.div`
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+        text-align: center;
+        font-weight: normal;
     }
     .item-image {
         width: 352px;
@@ -79,10 +88,11 @@ const PostItemBlock = styled.div`
         width: 352px;
         text-decoration: none;
         margin-top: 0;
-        color: ${palette.gray[9]}
+        color: black;
     }
     .subdesc {
         align-self: flex-end;
+        margin-right: 0.5rem;
     }
 `;
 
@@ -90,6 +100,8 @@ const TagBlock = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-self: center;
+    margin-bottom: 0.5rem;
     .tag-item {
         margin-right: 0.5rem;
     }
@@ -104,7 +116,13 @@ const PostItem = ({ post }) => {
             <h3>
                 <Link className='item-title' to={`/post/${id}`}>{title}</Link>
             </h3>
+            <TagBlock>
+                {tags.map((tag) => {
+                    return(<p1 className="tag-item">#{tag}</p1>);  
+                })}
+            </TagBlock>
             <p1 className="subdesc">{username} {createdDate}</p1>
+            
         </PostItemBlock>
     );
 };
@@ -119,7 +137,7 @@ const PostList = ({ posts, loading, error, user }) => {
     }
 
     return (
-        <>
+        <ComponenetWrapper>
         <HeaderBlock>
             <Link to="/" className="logo">YOUPLY</Link>
             <SearchBar />
@@ -138,12 +156,12 @@ const PostList = ({ posts, loading, error, user }) => {
             {!loading && posts.posts && (
                 <div>
                     {posts.posts.map(post => (
-                        <PostItem post={post} key={post.id} />
+                        <PostItem className="item" post={post} key={post.id} />
                     ))}
                 </div>
             )}
         </PostListBlock>
-        </>
+        </ComponenetWrapper>
     );
 };
 

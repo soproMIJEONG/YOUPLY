@@ -6,15 +6,13 @@ import Pagination from '../../components/posts/Pagination';
 
 const PaginationContainer = ({ match, location }) => {
     const { lastPage, posts, loading } = useSelector(({ posts, loading }) => ({
-        lastPage: posts.lastPage,
+        lastPage: posts.posts.lastPage,
         posts: posts.posts,
         loading: loading['posts/LIST_POSTS'],
     }));
 
-    // 포스트 데이터없거나 로딩중이면 아무것도 안보여줌
-    if (!posts.post || loading ) return null;
+    if (!posts.posts || loading ) return null;
 
-    // const { searchType } = match.params;  
     const { searchType, searchKeyword, page = 1 } = qs.parse(location.search, {   // ?searchKeyword= , ?page=
         ignoreQueryPrefix: true,
     });

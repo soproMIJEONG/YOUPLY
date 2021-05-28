@@ -7,7 +7,7 @@ import { HiSearch } from 'react-icons/hi';
 const SearchForm = styled.form`
     display: flex;
     justify-content: center;
-    margin-top: 7rem;
+    
     width: 70rem;
     .form-select {
         padding: 12px;
