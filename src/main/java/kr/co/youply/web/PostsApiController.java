@@ -1,16 +1,11 @@
 package kr.co.youply.web;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import kr.co.youply.service.posts.PostsService;
 import kr.co.youply.web.dto.PostsDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by WOOSERK.
