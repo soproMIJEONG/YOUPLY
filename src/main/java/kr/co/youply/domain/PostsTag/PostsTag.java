@@ -35,4 +35,8 @@ public class PostsTag
         this.posts = posts;
         this.tag = tag;
     }
+
+    public void update(Posts posts)
+    {
+    }
 }

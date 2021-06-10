@@ -69,14 +69,16 @@ public class PostsDTO
         private String title;
         private String body;
         private String selectedPL;
+        private List<String> tags;
         private String thumbnail;
 
         @Builder
-        public PostsUpdateRequestDTO(String title, String body, String selectedPL, String thumbnail)
+        public PostsUpdateRequestDTO(String title, String body, String selectedPL, String[] tags, String thumbnail)
         {
             this.title = title;
             this.body = removeTag(body);
             this.selectedPL = selectedPL;
+            this.tags = new ArrayList(Arrays.asList(tags));
             this.thumbnail = thumbnail;
         }
     }

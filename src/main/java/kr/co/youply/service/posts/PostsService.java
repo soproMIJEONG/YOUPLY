@@ -11,6 +11,7 @@ import kr.co.youply.web.dto.PostsTagDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +57,14 @@ public class PostsService
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         posts.update(requestDTO.getTitle(), requestDTO.getBody(), requestDTO.getSelectedPL(), requestDTO.getThumbnail());
+        Long postsId = posts.getId();
+
+        postsTagRepository.deleteAllByPosts(postsId);
+        for(String name : requestDTO.getTags())
+        {
+            Tag tag = tagRepository.save(new Tag(name));
+            postsTagRepository.save(new PostsTag(posts, tag));
+        }
 
         return id;
     }
